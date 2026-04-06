@@ -1,6 +1,7 @@
 import Elysia, { t } from "elysia";
 import { db } from "../db";
 import {
+  ALLOWED_SORT_FIELDS,
   SeriesBody,
   SeriesUpdateBody,
   SeriesParams,
@@ -38,7 +39,9 @@ export const seriesRoutes = new Elysia({ prefix: "/series" })
       const sort = query.sort ?? "id";
       const order = query.order ?? "asc";
 
-      const allowedSorts = ["id", "name", "current_episode", "total_episodes", "status", "created_at"];
+      const allowedSorts: readonly string[] = ALLOWED_SORT_FIELDS;
+      // safeSort is validated against the ALLOWED_SORT_FIELDS allowlist before
+      // interpolation — SQL identifiers cannot be parameterised in libSQL.
       const safeSort = allowedSorts.includes(sort) ? sort : "id";
       const safeOrder = order === "desc" ? "DESC" : "ASC";
 

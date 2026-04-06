@@ -20,6 +20,9 @@ const corsOrigin = process.env.FRONTEND_URL ?? true;
 
 const app = new Elysia()
   // ── CORS ─────────────────────────────────────────────────────────────────────
+  // `origin: true` tells @elysiajs/cors to echo back whatever Origin the client
+  // sends — effectively allowing all origins.  In production, FRONTEND_URL is
+  // set to restrict this to the known frontend domain.
   .use(
     cors({
       origin: corsOrigin,

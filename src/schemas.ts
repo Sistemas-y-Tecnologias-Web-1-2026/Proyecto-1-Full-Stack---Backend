@@ -1,5 +1,8 @@
 import { t } from "elysia";
 
+export const ALLOWED_SORT_FIELDS = ["id", "name", "current_episode", "total_episodes", "status", "created_at"] as const;
+export type SortField = (typeof ALLOWED_SORT_FIELDS)[number];
+
 // ── Series ────────────────────────────────────────────────────────────────────
 
 export const SeriesBody = t.Object({
