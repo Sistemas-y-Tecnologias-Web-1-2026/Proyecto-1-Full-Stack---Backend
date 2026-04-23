@@ -1,0 +1,4 @@
+series-tracker-backend
+.env
+series.db
+uploads/
