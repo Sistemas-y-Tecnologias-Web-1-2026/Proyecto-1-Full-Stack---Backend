@@ -1,0 +1,167 @@
+openapi: 3.0.3
+info:
+  title: Series Tracker API
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /series:
+    get:
+      summary: List series
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+        - in: query
+          name: limit
+          schema:
+            type: integer
+        - in: query
+          name: q
+          schema:
+            type: string
+        - in: query
+          name: sort
+          schema:
+            type: string
+            enum: [id, name, current_episode, total_episodes]
+        - in: query
+          name: order
+          schema:
+            type: string
+            enum: [asc, desc]
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Create series
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SeriesPayload'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Invalid input
+  /series/{id}:
+    get:
+      summary: Get series by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not found
+    put:
+      summary: Update series
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SeriesPayload'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Invalid input
+        '404':
+          description: Not found
+    delete:
+      summary: Delete series
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No content
+        '404':
+          description: Not found
+  /series/{id}/rating:
+    get:
+      summary: Get rating summary
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Add rating
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [score]
+              properties:
+                score:
+                  type: integer
+                  minimum: 0
+                  maximum: 10
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Invalid input
+  /upload-image:
+    post:
+      summary: Upload image
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [image]
+              properties:
+                image:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: Created
+components:
+  schemas:
+    SeriesPayload:
+      type: object
+      required: [name, current_episode, total_episodes]
+      properties:
+        name:
+          type: string
+        current_episode:
+          type: integer
+          minimum: 1
+        total_episodes:
+          type: integer
+          minimum: 1
+        image_url:
+          type: string
