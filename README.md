@@ -1,74 +1,98 @@
-# Series Tracker API (Backend)
+# Series Tracker — Backend 🎬
 
-Backend REST para el proyecto full stack. Expone JSON y no renderiza HTML.
+Backend REST API construido en Go (sin frameworks) con SQLite.
 
-## Stack
-- Go + net/http
-- SQLite
-- `database/sql` + `modernc.org/sqlite`
+## Screenshot
 
-## Requisitos
+### API corriendo
+Agrega aqui una captura de la API funcionando.
+
+## Links
+- Aplicación en producción: https://proyecto-1-full-stack-backend.onrender.com
+- Repositorio frontend: (agregar enlace)
+
+## Cómo correr el proyecto localmente
+
+### Requisitos
 - Go 1.22+
-- SQLite (se crea automaticamente el archivo `.db`)
 
-## Configuracion
-1. Copia `.env.example` y define tus valores:
-
+### Instalación
 ```bash
-cp .env.example .env
-```
-
-Variables necesarias:
-- `SQLITE_PATH`: ruta del archivo sqlite (default `series.db`)
-- `PORT`: puerto del API (default `8080`)
-
-## Ejecutar
-```bash
+git clone https://github.com/Sistemas-y-Tecnologias-Web-1-2026/Proyecto-1-Full-Stack---Backend.git
+cd Proyecto-1-Full-Stack---Backend
 go mod tidy
 go run .
 ```
 
-## Endpoints principales
-- `GET /series`
-- `GET /series/:id`
-- `POST /series`
-- `PUT /series/:id`
-- `DELETE /series/:id`
-- `POST /series/:id/rating`
-- `GET /series/:id/rating`
-- `POST /upload-image` (multipart, max 1MB)
+Variables de entorno opcionales:
+- `PORT` (default: `8080`)
+- `SQLITE_PATH` (default: `series.db`)
 
-## Query params en listado
-`GET /series?page=1&limit=10&q=naruto&sort=name&order=asc`
+## Estructura del proyecto
 
-## CORS
-CORS es una politica de seguridad del navegador que bloquea peticiones entre origenes distintos si el servidor no las autoriza; este backend habilita `Access-Control-Allow-Origin: *`, metodos `GET,POST,PUT,DELETE,OPTIONS` y header `Content-Type` para desarrollo.
-
-## OpenAPI / Swagger
-- Spec: `GET /openapi.yaml`
-- UI: `GET /docs`
-
-## Ejemplo JSON para crear serie
-```json
-{
-  "name": "Breaking Bad",
-  "current_episode": 1,
-  "total_episodes": 62,
-  "image_url": "https://..."
-}
+```
+.
+├── main.go          # API REST, CORS, validaciones, SQLite
+├── openapi.yaml     # Contrato OpenAPI
+├── go.mod
+├── go.sum
+└── README.md
 ```
 
-## HTTP codes usados
-- `200`: lectura/actualizacion
-- `201`: creado (serie/rating/upload)
-- `204`: eliminado
-- `400`: input invalido
-- `404`: recurso no existe
-- `405`: metodo no permitido
-- `500`: error interno
+## Endpoints
 
-## Screenshot
-Agrega aqui una captura de la API funcionando (Swagger o cliente consumiendo API).
+### Series
+| Método | Ruta | Descripción |
+|--------|------|-------------|
+| GET | `/series` | Listar series |
+| GET | `/series/{id}` | Obtener serie por ID |
+| POST | `/series` | Crear serie |
+| PUT | `/series/{id}` | Editar serie |
+| DELETE | `/series/{id}` | Eliminar serie |
 
-## Reflexion
-(Completar para la entrega) Esta arquitectura separada facilita reutilizar el backend en web, movil o CLI sin reescribir logica de negocio.
+### Ratings
+| Método | Ruta | Descripción |
+|--------|------|-------------|
+| POST | `/series/{id}/rating` | Agregar rating (0–10) |
+| GET | `/series/{id}/rating` | Obtener resumen de rating |
+
+### Imagen
+| Método | Ruta | Descripción |
+|--------|------|-------------|
+| POST | `/upload-image` | Subir imagen (max 1MB) |
+
+### Query params en GET /series
+| Parámetro | Ejemplo | Descripción |
+|-----------|---------|-------------|
+| `q` | `?q=dark` | Buscar por nombre |
+| `sort` | `?sort=name` | Ordenar por columna |
+| `order` | `?order=desc` | Dirección (`asc`/`desc`) |
+| `page` | `?page=2` | Página actual |
+| `limit` | `?limit=10` | Tamaño de página |
+
+## OpenAPI y Swagger
+- Spec: `/openapi.yaml`
+- UI: `/docs`
+
+## Códigos HTTP usados
+- `200` lectura/actualización
+- `201` creación
+- `204` eliminación
+- `400` input inválido
+- `404` no encontrado
+- `405` método no permitido
+- `500` error interno
+
+## CORS
+
+CORS es la política de seguridad del navegador para peticiones entre orígenes distintos. Este backend permite:
+
+```
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Headers: Content-Type
+```
+
+## Reflection
+
+Go con la librería estándar permitió construir una API clara y sin dependencias pesadas. Separar backend y frontend hizo más simple mantener responsabilidades y evolucionar cada parte por separado.
