@@ -80,7 +80,7 @@ Variables de entorno opcionales:
 En la raiz del proyecto hay un script `load.py` que carga series manualmente en la API y toma imagenes reales desde Wikipedia para no depender de placeholders.
 
 ```bash
-API_URL=https://proyecto-1-full-stack-backend-production.up.railway.app python3 load.py
+API_URL=https://proyecto-1-full-stack-backend-production.up.railway.app/series python3 load.py
 ```
 
 Si queres cargar datos en local:
