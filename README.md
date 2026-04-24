@@ -5,10 +5,11 @@ Backend REST API construido en Go (sin frameworks) con SQLite.
 ## Screenshot
 
 ### API corriendo
-Agrega aqui una captura de la API funcionando.
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/ccfbe993-5379-4576-916f-50d09e47d1e2" />
+
 
 ## Links
-- Aplicación en producción: https://proyecto-1-full-stack-backend.onrender.com
+- Aplicación en producción: https://proyecto-1-full-stack-backend.onrender.com/series
 - Repositorio frontend: https://github.com/Sistemas-y-Tecnologias-Web-1-2026/Proyecto-1-Full-Stack---Frontend
 
 ## Cómo correr el proyecto localmente
@@ -104,7 +105,7 @@ Access-Control-Allow-Headers: Content-Type
 | Validación server-side con respuestas de error en JSON descriptivas | 20 |
 | Paginación en `GET /series` con `?page=` y `?limit=` | 30 |
 | Búsqueda por nombre con `?q=` | 15 |
-| Ordenamiento con `?sort=` y `?order=asc|desc` | 15 |
+| Ordenamiento con `?sort=` y `?order=ascdesc | 15 |
 
 ### Challenges adicionales
 | Challenge | Puntos |
