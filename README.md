@@ -75,6 +75,20 @@ Variables de entorno opcionales:
 - Spec: `/openapi.yaml`
 - UI: `/docs`
 
+## Seed manual de series
+
+En la raiz del proyecto hay un script `load.py` que carga series manualmente en la API y toma imagenes reales desde Wikipedia para no depender de placeholders.
+
+```bash
+API_URL=https://proyecto-1-full-stack-backend.onrender.com/series python3 load.py
+```
+
+Si queres cargar datos en local:
+
+```bash
+API_URL=http://localhost:8080/series python3 load.py
+```
+
 ## Códigos HTTP usados
 - `200` lectura/actualización
 - `201` creación
