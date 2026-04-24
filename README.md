@@ -9,7 +9,7 @@ Backend REST API construido en Go (sin frameworks) con SQLite.
 
 
 ## Links
-- Aplicación en producción: https://proyecto-1-full-stack-backend-production.up.railway.app
+- Aplicación en producción: https://proyecto-1-full-stack-backend-production.up.railway.app/series
 - Repositorio frontend: https://github.com/Sistemas-y-Tecnologias-Web-1-2026/Proyecto-1-Full-Stack---Frontend
 
 ## Cómo correr el proyecto localmente
