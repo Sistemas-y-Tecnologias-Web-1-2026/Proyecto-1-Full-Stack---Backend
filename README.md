@@ -117,4 +117,4 @@ Total implementado: 200 puntos
 
 ## Reflexion
 
-Go con la librería estándar permitió construir una API clara y sin dependencias pesadas. Separar backend y frontend hizo más simple mantener responsabilidades y evolucionar cada parte por separado.
+Go permitió construir una API clara y sin dependencias pesadas. Separar backend y frontend hizo más simple mantener responsabilidades y evolucionar cada parte por separado.
