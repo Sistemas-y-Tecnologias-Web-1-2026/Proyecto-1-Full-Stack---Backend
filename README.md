@@ -5,7 +5,7 @@ Backend REST API construido en Go (sin frameworks) con SQLite.
 ## Screenshot
 
 ### API corriendo
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/ccfbe993-5379-4576-916f-50d09e47d1e2" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/e349a6b2-4d8c-4222-96ce-d45034de5450" />
 
 
 ## Links
